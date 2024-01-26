@@ -1,9 +1,9 @@
 #include "Node.h"
 template <typename T>
-Node<T>::Node(T data, Node<T>* next)
+Node<T>::Node(T data)
 {
     this->data = data;
-    this->next = next;
+    this->next = nullptr;
 }
 
 template <typename T>

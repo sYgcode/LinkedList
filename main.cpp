@@ -5,5 +5,5 @@ using namespace std;
 
 int main ()
 {
-    cout << "test\n";
+    LinkedList<int> l;
 }
