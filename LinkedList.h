@@ -1,4 +1,6 @@
+#pragma once
 #include "Node.h"
+
 template <typename T>
 class LinkedList
 {
@@ -6,7 +8,6 @@ private:
     Node<T>* head;
 public:
     class Iterator;
-    
     LinkedList();
     ~LinkedList();
     LinkedList operator+(const LinkedList& list);
@@ -51,3 +52,4 @@ public:
         return current != other.current;
     }
 };
+

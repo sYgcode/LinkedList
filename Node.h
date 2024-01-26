@@ -1,4 +1,4 @@
-
+#pragma once
 //@author @sYgcode
 template <typename T>
 class Node

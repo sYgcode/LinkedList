@@ -1,7 +1,7 @@
 #include "LinkedList.h"
 #include "Node.h"
 
-// constructor
+// Constructor
 template <typename T>
 LinkedList<T>::LinkedList() : head(nullptr){}
 //Destructor
@@ -11,7 +11,7 @@ LinkedList<T>::~LinkedList()
     while(head)
     {
         Node<T> *temp = head;
-        head = head.next;
+        head = head->next;
         delete temp;
     }
 }
@@ -25,18 +25,24 @@ LinkedList<T> LinkedList<T>::operator+(const LinkedList& list)
 
 //returns a boolean of the List is empty
 template <typename T>
-bool LinkedList<T>::isEmpty() {head ? return true : return false;}
+bool LinkedList<T>::isEmpty() 
+{
+    if(head != nullptr) 
+    {return true;}
+    else 
+    {return false;}
+}
 
 // returns size of list
 template <typename T>
 int LinkedList<T>::size()
 {
     int size = 0;
-    Iterator current = LinkedList.begin();
-    while (current != LinkedList.end())
+    Iterator current = this->begin();
+    while (current != this->end())
     {
         ++size;
-        ++Iterator;
+        ++current;
     }
     return size;
 }
@@ -51,7 +57,7 @@ Node<T>* LinkedList<T>::back()
 {
     Iterator temp1= this->begin();
     Iterator temp2 = temp1;
-    if(temp1 == this->end()) {return head};
+    if(temp1 == this->end()) {return head;}
     ++temp1;
     while (temp1 != this->end())
     {
@@ -99,4 +105,49 @@ void LinkedList<T>::insert(Iterator i, T data)
     Node<T>* newNode = new Node<T>(data);
     newNode->next = i.current->next;
     i.current->next = newNode;
+}
+
+//adds a new node to the end
+template <typename T>
+void LinkedList<T>::push_back(T data)
+{
+    Node<T>* newNode = new Node<T>(data);
+    newNode->next = nullptr;
+    if(head == nullptr)
+    {
+        head = newNode;
+        return;
+    }
+    this.back()->next = newNode;
+}
+
+template <typename T>
+void LinkedList<T>::pop_back()
+{
+    if(head == nullptr) {return;}
+    if(head->next == nullptr)
+    {
+        delete head;
+        head = nullptr;
+        return;
+    }
+    Node<T>* curr = head;
+    while (curr->next->next != nullptr)
+    {
+        curr = curr->next;
+    }
+    delete curr->next;
+    curr->next = nullptr;
+}
+
+template <typename T>
+typename LinkedList<T>::Iterator LinkedList<T>::begin()
+{
+    return Iterator(head);
+}
+
+template <typename T>
+typename LinkedList<T>::Iterator LinkedList<T>::end()
+{
+    return Iterator(nullptr);
 }
